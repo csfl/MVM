@@ -1,0 +1,8 @@
+file(GLOB SOURCES "*.cpp")
+file(GLOB HEADERS "*.h")
+set(UTILS_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/mvm/utils")
+add_library(devcrypto ${SOURCES} ${HEADERS})
+message("UTILS_INCLUDE_DIR-1:"${UTILS_INCLUDE_DIR})
+message("CRYPTOPP_LIBRARY:"${CRYPTOPP_LIBRARY})
+target_include_directories(devcrypto PRIVATE ${UTILS_INCLUDE_DIR})
+target_link_libraries(devcrypto PUBLIC devcore Secp256k1 PRIVATE libff::ff cryptopp-static libscrypt::scrypt)

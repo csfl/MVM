@@ -1,0 +1,6 @@
+file(GLOB sources "*.cpp" "*.h")
+add_definitions(-DETH_FATDB)
+add_library(ethereum ${sources})
+set(UTILS_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/mvm/utils")
+target_include_directories(ethereum PRIVATE "${UTILS_INCLUDE_DIR}")
+target_link_libraries(ethereum PUBLIC evm ethcore devcrypto devcore PRIVATE jsoncpp_lib_static Snappy::snappy Boost::fiber Boost::context)
